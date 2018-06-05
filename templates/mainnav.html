@@ -6,9 +6,30 @@
     <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav ml-auto">
             <li class="nav-item"><a class="nav-link {% if request.path == '/' or request.path == '/home/' or request.path == '/home' %}active{% endif %}" href="{{ url_for('home') }}">Home</a></li>
-            <li class="nav-item"><a class="nav-link {% if request.path == '/routines' or request.path == '/routines/' %}active{% endif %}" href="{{ url_for('get_routines') }}">Routines</a></li>
-            <li class="nav-item"><a class="nav-link {% if request.path == '/workouts' or request.path == '/workouts/' %}active{% endif %}" href="{{ url_for('get_workouts') }}">Workouts</a></li>
-            <li class="nav-item"><a class="nav-link {% if request.path == '/exercises' or request.path == '/exercises/' %}active{% endif %}" href="{{ url_for('get_exercises') }}">Exercises</a></li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle {% if request.path == '/routines' or request.path == '/routines/' %}active{% endif %}" href="" id="routinesDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Routines</a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="routinesDropdown">
+                    <a class="dropdown-item" href="{{ url_for('get_routines') }}">Explore</a>
+                    <a class="dropdown-item" href="">Build</a>
+                    <a class="dropdown-item" href="">Edit</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle {% if request.path == '/workouts' or request.path == '/workouts/' %}active{% endif %}" href="" id="workoutsDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Workouts</a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="workoutsDropdown">
+                    <a class="dropdown-item" href="{{ url_for('get_workouts') }}">Explore</a>
+                    <a class="dropdown-item" href="">Build</a>
+                    <a class="dropdown-item" href="">Edit</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle {% if request.path == '/exercises' or request.path == '/exercises/' %}active{% endif %}" href="" id="exercisesDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Exercises</a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="exercisesDropdown">
+                    <a class="dropdown-item" href="{{ url_for('get_exercises') }}">Explore</a>
+                    <a class="dropdown-item" href="">Add</a>
+                    <a class="dropdown-item" href="">Edit</a>
+                </div>
+            </li>
         </ul>
     </div>
 </nav>
