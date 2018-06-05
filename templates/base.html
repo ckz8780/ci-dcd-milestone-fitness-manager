@@ -27,8 +27,38 @@
     {% endblock %}
 </head>
 <body>
-    {% block content %}
-    {% endblock %}
+    <header>
+        <!-- Fixed navbar -->
+        <nav class="navbar navbar-expand-md navbar-dark bg-info fixed-top">
+            <a class="navbar-brand" href="#">Fitness Manager</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active"><a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Routines</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Workouts</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Exercises</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main role="main" class="container">
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer class="footer bg-info">
+      <div class="container-fluid">
+          <div class="row text-center">
+              <div class="col">
+                  <p class="lead">Check out my <a href="https://www.github.com/ckz8780" target="_blank" alt="Click to go to my Github"><strong>Github</strong></a>!</p>
+              </div>
+          </div>
+      </div>
+    </footer>
     
     {% block corejs %}
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>

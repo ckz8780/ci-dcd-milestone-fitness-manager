@@ -1,9 +1,69 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700|Roboto:300,400,700');
 
+html {
+  position: relative;
+  min-height: 100%;
+}
+
 body {
-    font-family: 'Roboto', sans-serif
+    font-family: 'Roboto', sans-serif;
+    margin-bottom: 56px;
+    color: #fafafa;
+    background: url("/static/images/bg-side.jpg") no-repeat center center fixed;
+    background-size: cover;
+}
+
+main {
+    min-height: calc(100vh - 56px);
+    padding-top: 56px;
 }
 
 .condensed {
     font-family: 'Roboto Condensed', sans-serif;
+}
+
+nav {
+    box-shadow: 0px 0px 10px #333;
+}
+
+.navbar-dark .navbar-brand {
+    font-weight: 700;
+    transition: all 0.25s ease-in-out;
+}
+
+.navbar-dark .navbar-brand:hover {
+    transform: scale(1.15);
+    transition: all 0.25s ease-in-out;
+}
+
+/* -------------------------------------------------- Footer */
+
+.footer {
+    color: rgb(128, 128, 128);
+    color: rgba(255,255,255, 0.5);
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 56px;
+    line-height: 56px;
+    background-color: #f8f9fa;
+    box-shadow: 0px 0px 10px #333;
+}
+
+footer .lead {
+    padding: 0;
+    margin: 0;
+}
+
+footer .lead a {
+    text-decoration: none;
+    font-weight: 700;
+    color: rgb(192, 192, 192);
+    color: rgba(255,255,255, 0.75);
+    transition: all 0.25s ease-in-out;
+}
+
+footer .lead a:hover {
+    color: #fff;
+    transition: all 0.25s ease-in-out;
 }
