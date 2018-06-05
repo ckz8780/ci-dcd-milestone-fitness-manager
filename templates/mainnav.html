@@ -1,0 +1,14 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-info fixed-top">
+    <a class="navbar-brand" href="#">Fitness Manager</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item"><a class="nav-link {% if request.path == '/' or request.path == '/home/' or request.path == '/home' %}active{% endif %}" href="{{ url_for('home') }}">Home</a></li>
+            <li class="nav-item"><a class="nav-link {% if request.path == '/routines' or request.path == '/routines/' %}active{% endif %}" href="{{ url_for('get_routines') }}">Routines</a></li>
+            <li class="nav-item"><a class="nav-link {% if request.path == '/workouts' or request.path == '/workouts/' %}active{% endif %}" href="{{ url_for('get_workouts') }}">Workouts</a></li>
+            <li class="nav-item"><a class="nav-link {% if request.path == '/exercises' or request.path == '/exercises/' %}active{% endif %}" href="{{ url_for('get_exercises') }}">Exercises</a></li>
+        </ul>
+    </div>
+</nav>
