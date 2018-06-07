@@ -38,13 +38,13 @@ def get_exercises():
 def add_exercise():
     return render_template("add_exercise.html", workouts=mongo.db.workouts.find())
     
-@app.route('/workouts/add')
-def add_workout():
-    return render_template("add_workout.html")
+@app.route('/workouts/build')
+def build_workout():
+    return render_template("build_workout.html")
     
-@app.route('/routines/add')
-def add_routine():
-    return render_template("add_routine.html")
+@app.route('/routines/build')
+def build_routine():
+    return render_template("build_routine.html")
     
 @app.route('/exercises/edit')
 def edit_exercise():
