@@ -60,7 +60,21 @@ def edit_routine():
 
 @app.route('/exercises/insert', methods=['POST'])
 def insert_exercise():
-    return render_template("insert_exercise.html")
+    
+    workout_ids = []
+    workout_id = ObjectId(mongo.db.workouts.find_one({"workout_type_name": request.form.get('exercise_workout_type')})['_id'])
+    workout_ids.append(workout_id)
+    
+    new_exercise = {
+        "exercise_name": request.form.get('exercise_name'),
+        "sets": request.form.get('exercise_sets'),
+        "reps": request.form.get('exercise_reps'),
+        "workouts" : workout_ids,
+        "exercise_url": request.form.get('exercise_url')
+    }
+    
+    inserted = mongo.db.exercises.insert_one(new_exercise)
+    return render_template("exercises.html", exercises=mongo.db.exercises.find())
     
 @app.route('/workouts/insert')
 def insert_workout():
