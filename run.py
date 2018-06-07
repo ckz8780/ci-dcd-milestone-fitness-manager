@@ -36,7 +36,7 @@ def get_exercises():
     
 @app.route('/exercises/add')
 def add_exercise():
-    return render_template("add_exercise.html")
+    return render_template("add_exercise.html", workouts=mongo.db.workouts.find())
     
 @app.route('/workouts/add')
 def add_workout():
@@ -58,7 +58,7 @@ def edit_workout():
 def edit_routine():
     return render_template("edit_routine.html")
 
-@app.route('/exercises/insert')
+@app.route('/exercises/insert', methods=['POST'])
 def insert_exercise():
     return render_template("insert_exercise.html")
     
