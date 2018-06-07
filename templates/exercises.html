@@ -2,4 +2,7 @@
 
 {% block content %}
 <h1>EXERCISES</h1>
+{% for exercise in exercises %}
+<p>{{ exercise.exercise_name }}: {{ exercise.sets }} sets, {{ exercise.reps }} reps --> {{exercise.exercise_url }}</p>
+{% endfor %}
 {% endblock %}

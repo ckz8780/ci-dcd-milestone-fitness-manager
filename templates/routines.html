@@ -3,13 +3,6 @@
 {% block content %}
     <h1>Routines:</h1>
     {% for routine in routines %}
-        <h2>{{ routine.routine_name }}</h2>
-        <h3>Workouts:</h3>
-        {% for workout in routine.workouts %}
-            <h4>{{ workout.workout_type_name }}:</h4>
-            {% for exercise in workout.exercises %}
-                <p>{{ exercise.exercise_name }}</p>
-            {% endfor %}
-        {% endfor %}
+        <p>{{ routine.routine_name }}: {{ routine.length }} Minutes, Level {{ routine.difficulty }} Difficulty</p>
     {% endfor %}
 {% endblock %}

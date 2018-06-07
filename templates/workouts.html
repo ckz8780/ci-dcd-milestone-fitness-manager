@@ -2,4 +2,7 @@
 
 {% block content %}
 <h1>WORKOUTS</h1>
+{% for workout in workouts %}
+<p>{{ workout.workout_type_name }}</p>
+{% endfor%}
 {% endblock %}
