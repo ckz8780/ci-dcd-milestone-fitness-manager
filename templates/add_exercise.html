@@ -19,10 +19,10 @@
                 <input class="form-control form-control-lg" type="number" name="exercise_reps" min="1" max="100" placeholder="Number of Reps (1-100)" required />
             </div>
             <div class="form-group">
-                <label for="exercise_workout_type"><p>Exercise Type/Muscle Group:</p></label>
-                <select class="form-control form-control-lg" type="text" id="exercise_workout_type" name="exercise_workout_type" placeholder="Muscle Group" required />
-                    {% for workout in workouts %}
-                        <option value="{{ workout.workout_type_name }}">{{ workout.workout_type_name | title }}</option>
+                <label for="exercise_categories"><p class="h5">Exercise Categories:<br><small class="text-muted">(Ctrl / Shift + Click to Select Multiple)</small></p></label>
+                <select multiple class="form-control form-control-lg" type="text" id="exercise_categories" name="exercise_categories" placeholder="Muscle Group" required />
+                    {% for category in categories %}
+                        <option value="{{ category.category_name }}">{{ category.category_name | title }}</option>
                     {% endfor %}
                 </select>
             </div>

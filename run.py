@@ -36,7 +36,7 @@ def get_exercises():
     
 @app.route('/exercises/add')
 def add_exercise():
-    return render_template("add_exercise.html", workouts=mongo.db.workouts.find())
+    return render_template("add_exercise.html", categories=mongo.db.exercise_categories.find())
     
 @app.route('/workouts/build')
 def build_workout():
