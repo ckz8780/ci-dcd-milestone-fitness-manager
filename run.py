@@ -46,8 +46,9 @@ def build_workout():
 def build_routine():
     return render_template("build_routine.html")
     
-@app.route('/exercises/edit')
-def edit_exercise():
+@app.route('/exercises/edit/<exercise_id>')
+def edit_exercise(exercise_id):
+    print(exercise_id)
     return render_template("edit_exercise.html")
     
 @app.route('/workouts/edit')
@@ -61,20 +62,22 @@ def edit_routine():
 @app.route('/exercises/insert', methods=['POST'])
 def insert_exercise():
     
-    workout_ids = []
-    workout_id = ObjectId(mongo.db.workouts.find_one({"workout_type_name": request.form.get('exercise_workout_type')})['_id'])
-    workout_ids.append(workout_id)
+    # workout_ids = []
+    # workout_id = ObjectId(mongo.db.workouts.find_one({"workout_type_name": request.form.get('exercise_workout_type')})['_id'])
+    # workout_ids.append(workout_id)
+    
+    # print(request.form.getlist('exercise_categories'))
     
     new_exercise = {
         "exercise_name": request.form.get('exercise_name'),
         "sets": request.form.get('exercise_sets'),
         "reps": request.form.get('exercise_reps'),
-        "workouts" : workout_ids,
+        "categories": request.form.getlist('exercise_categories'),
         "exercise_url": request.form.get('exercise_url')
     }
     
     inserted = mongo.db.exercises.insert_one(new_exercise)
-    return render_template("exercises.html", exercises=mongo.db.exercises.find())
+    return redirect(url_for('get_exercises'))
     
 @app.route('/workouts/insert')
 def insert_workout():
@@ -95,6 +98,11 @@ def update_workout():
 @app.route('/routines/update')
 def update_routine():
     return render_template("update_routine.html")
+    
+@app.route('/exercises/delete/<exercise_id>')
+def delete_exercise(exercise_id):
+    print(exercise_id)
+    return redirect(url_for('get_exercises'))
     
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),

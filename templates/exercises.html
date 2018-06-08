@@ -1,8 +1,30 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>EXERCISES</h1>
+
+<div class="row text-center">
+    <div class="col">
+        <h1 class="display-3">Exercises</h1>        
+    </div>
+</div>
+
 {% for exercise in exercises %}
-<p>{{ exercise.exercise_name }}: {{ exercise.sets }} sets, {{ exercise.reps }} reps --> {{exercise.exercise_url }}</p>
+<div class="row text-center text-md-left exercise-name-row">
+    <div class="col-12">
+        <h3 class="exercise-name">{{ exercise.exercise_name }}</h3>
+    </div>
+</div>
+<div class="row text-center text-md-left exercise-detail-row">
+    <div class="col-12 col-md-3 exercise-reps-sets">
+        <p>{{ exercise.sets }} Sets / {{ exercise.reps }} Reps Each</p>
+    </div>
+    <div class="col-12 col-md-6 exercise-url">
+        <p><a href="{{ exercise.exercise_url }}" class="exercise-video-url">{{exercise.exercise_url }}</a></p>
+    </div>
+    <div class="col-12 col-md-3 exercise-buttons">
+        <a href="{{ url_for('edit_exercise', exercise_id=exercise._id) }}" class="btn btn-sm btn-info">Modify</a>
+        <a href="{{ url_for('delete_exercise', exercise_id=exercise._id) }}" class="btn btn-sm btn-danger">Delete</a>
+    </div>
+</div>
 {% endfor %}
 {% endblock %}
