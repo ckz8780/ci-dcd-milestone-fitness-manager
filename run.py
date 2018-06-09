@@ -51,7 +51,9 @@ def build_routine():
 
 @app.route('/workouts/build')
 def build_workout():
-    return render_template("build_workout.html", categories=mongo.db.exercise_categories.find())
+    return render_template("build_workout.html",
+    exercise_categories=[category for category in mongo.db.exercise_categories.find()],
+    exercises=[exercise for exercise in mongo.db.exercises.find()])
 
 @app.route('/exercises/add')
 def add_exercise():

@@ -13,37 +13,21 @@
                 <input class="form-control form-control-lg" type="text" name="workout_name" placeholder="Workout Name" required />
             </div>
             <div class="form-group">
-                <label for="exercise_categories"><p class="h5">Choose Exercise Category:</p></label>
-                <select class="form-control form-control-lg" type="text" id="exercise_categories" name="exercise_categories" required />
-                    {% for category in categories %}
-                        <option value="{{ category.category_name }}">{{ category.category_name | title }}</option>
+                <label for="exercise_list"><p class="h5">Choose Exercises:</p></label>
+                <select multiple class="form-control" id="exercise_list" name="exercise_list" size="10" required />
+                    {% for category in exercise_categories %}
+                        <optgroup label="{{ category.category_name | title }}">
+                            {% for exercise in exercises %}
+                                {% if category.category_name in exercise.categories %}
+                                    <option value="{{ exercise.exercise_name }}">{{ exercise.exercise_name | title }}</option>
+                                {% endif %}
+                            {% endfor %}
+                        </optgroup>
                     {% endfor %}
                 </select>
-            </div>
-            <div id="exercise-list" class="form-group">
-                
             </div>
             <button class="btn btn-info btn-lg form-control form-control-lg">Build It!</button>
         </form>
     </div>
 </div>
-{% endblock %}
-
-{% block postloadjs %}
-<script type="text/javascript">
-    // Set List of exercises based on selected dropdown item 
-    $('#exercise_categories').on('change', function() {
-        var url = '/exercises/by_cat/' + $(this).val();
-        $.get(url, function(data) {
-            var exercisesHtml = "";
-            data.exercises.forEach(function(exercise){
-                exercisesHtml += `<div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="${exercise.exercise_name.toLowerCase().replace(' ', '-')}">
-                                    <label class="custom-control-label" for="${exercise.exercise_name.toLowerCase().replace(' ', '-')}">${exercise.exercise_name}</label>
-                                </div>`;
-            });
-            $('#exercise-list').html(exercisesHtml);
-        });
-    })
-</script>
 {% endblock %}
