@@ -104,7 +104,10 @@ def edit_routine(routine_id):
 @app.route('/workouts/edit/<workout_id>')
 def edit_workout(workout_id):
     print(workout_id)
-    return render_template("edit_workout.html")
+    return render_template("edit_workout.html",
+    exercise_categories=[category for category in mongo.db.exercise_categories.find()],
+    exercises=[exercise for exercise in mongo.db.exercises.find()],
+    workout=mongo.db.workouts.find_one({'_id': ObjectId(workout_id)}))
     
 @app.route('/exercises/edit/<exercise_id>')
 def edit_exercise(exercise_id):

@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row page-header-row text-center">
+    <div class="col-12">
+        <h1 class="display-3">Modify Workout</h1>
+    </div>
+</div>
+<div class="row form-add-row">
+    <div class="col">
+        <form method="post" action="{{ url_for('update_workout', workout_id=workout._id) }}">
+            <div class="form-group">
+                <input class="form-control form-control-lg" type="text" name="workout_name" placeholder="Workout Name" value="{{ workout.workout_name }}" required />
+            </div>
+            <div class="form-group">
+                <label for="exercise_list"><p class="h5">Choose Exercises:<br><small class="text-muted">(Current Exercises are Selected)</small></p></label>
+                <select multiple class="form-control" id="exercise_list" name="exercise_list" size="10" required />
+                    {% for category in exercise_categories %}
+                        <optgroup label="{{ category.category_name | title }}">
+                            {% for exercise in exercises %}
+                                {% if category.category_name in exercise.categories %}
+                                    {% if exercise.exercise_name in workout.exercise_list %}
+                                        <option selected value="{{ exercise.exercise_name }}">{{ exercise.exercise_name | title }}</option>
+                                    {% else %}
+                                        <option value="{{ exercise.exercise_name }}">{{ exercise.exercise_name | title }}</option>
+                                        {% endif %}
+                                {% endif %}
+                            {% endfor %}
+                        </optgroup>
+                    {% endfor %}
+                </select>
+            </div>
+            <button class="btn btn-info btn-lg form-control form-control-lg">Update!</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
