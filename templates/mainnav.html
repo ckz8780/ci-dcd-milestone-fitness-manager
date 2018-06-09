@@ -18,7 +18,7 @@
                 <a class="nav-link dropdown-toggle {% if request.path == '/workouts' or request.path == '/workouts/' %}active{% endif %}" href="" id="workoutsDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Workouts</a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="workoutsDropdown">
                     <a class="dropdown-item" href="{{ url_for('get_workouts') }}">Explore</a>
-                    <a class="dropdown-item" href="">Build</a>
+                    <a class="dropdown-item" href="{{ url_for('build_workout') }}">Build</a>
                     <a class="dropdown-item" href="">Edit</a>
                 </div>
             </li>

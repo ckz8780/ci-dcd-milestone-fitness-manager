@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row page-header-row text-center">
+    <div class="col-12">
+        <h1 class="display-3">Build a Workout</h1>
+    </div>
+</div>
+<div class="row form-add-row">
+    <div class="col">
+        <form method="post" action="{{ url_for('insert_workout') }}">
+            <div class="form-group">
+                <input class="form-control form-control-lg" type="text" name="workout_name" placeholder="Workout Name" required />
+            </div>
+            <div class="form-group">
+                <label for="exercise_categories"><p class="h5">Choose Exercise Category:</p></label>
+                <select class="form-control form-control-lg" type="text" id="exercise_categories" name="exercise_categories" required />
+                    {% for category in categories %}
+                        <option value="{{ category.category_name }}">{{ category.category_name | title }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div id="exercise-list" class="form-group">
+                
+            </div>
+            <button class="btn btn-info btn-lg form-control form-control-lg">Build It!</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block postloadjs %}
+<script type="text/javascript">
+    // Set List of exercises based on selected dropdown item 
+    $('#exercise_categories').on('change', function() {
+        var url = '/exercises/by_cat/' + $(this).val();
+        $.get(url, function(data) {
+            var exercisesHtml = "";
+            data.exercises.forEach(function(exercise){
+                exercisesHtml += `<div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="${exercise.exercise_name.toLowerCase().replace(' ', '-')}">
+                                    <label class="custom-control-label" for="${exercise.exercise_name.toLowerCase().replace(' ', '-')}">${exercise.exercise_name}</label>
+                                </div>`;
+            });
+            $('#exercise-list').html(exercisesHtml);
+        });
+    })
+</script>
+{% endblock %}

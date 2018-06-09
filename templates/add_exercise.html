@@ -10,24 +10,24 @@
     <div class="col">
         <form method="post" action="{{ url_for('insert_exercise') }}">
             <div class="form-group">
-                <input class="form-control form-control-lg" type="text" name="exercise_name" placeholder="Exercise Name" required />
+                <input class="form-control form-control-lg" type="text" name="exercise_name" placeholder="Exercise Name" required>
             </div>
             <div class="form-group">
-                <input class="form-control form-control-lg" type="number" name="exercise_sets" min="1" max="100" placeholder="Number of Sets (1-100)" required />
+                <input class="form-control form-control-lg" type="number" name="exercise_sets" min="1" max="100" placeholder="Number of Sets (1-100)" required>
             </div>
             <div class="form-group">
-                <input class="form-control form-control-lg" type="number" name="exercise_reps" min="1" max="100" placeholder="Number of Reps (1-100)" required />
+                <input class="form-control form-control-lg" type="number" name="exercise_reps" min="1" max="100" placeholder="Number of Reps (1-100)" required>
             </div>
             <div class="form-group">
                 <label for="exercise_categories"><p class="h5">Exercise Categories:<br><small class="text-muted">(Ctrl / Shift + Click to Select Multiple)</small></p></label>
-                <select multiple class="form-control form-control-lg" type="text" id="exercise_categories" name="exercise_categories" placeholder="Muscle Group" required />
+                <select multiple class="form-control form-control-lg" type="text" id="exercise_categories" name="exercise_categories" required>
                     {% for category in categories %}
                         <option value="{{ category.category_name }}">{{ category.category_name | title }}</option>
                     {% endfor %}
                 </select>
             </div>
             <div class="form-group">
-                <input class="form-control form-control-lg" type="text" name="exercise_url" placeholder="Video URL (Optional)" required />
+                <input class="form-control form-control-lg" type="text" name="exercise_url" placeholder="Video URL (Optional)">
             </div>
             <button class="btn btn-info btn-lg form-control form-control-lg">Add Exercise!</button>
         </form>
