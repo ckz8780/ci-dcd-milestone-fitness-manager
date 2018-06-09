@@ -108,8 +108,9 @@ def edit_workout(workout_id):
     
 @app.route('/exercises/edit/<exercise_id>')
 def edit_exercise(exercise_id):
-    print(exercise_id)
-    return render_template("edit_exercise.html")
+    return render_template("edit_exercise.html",
+    categories=[category for category in mongo.db.exercise_categories.find()],
+    exercise=mongo.db.exercises.find_one({'_id': ObjectId(exercise_id)}))
     
 # UPDATE ROUTINES/WORKOUTS/EXERCISES  
 
