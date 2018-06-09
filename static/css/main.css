@@ -77,7 +77,8 @@ nav {
 /* -------------------------------------------------- DB-item Lists */
 
 .exercise-name-row,
-.routine-name-row {
+.routine-name-row,
+.workout-name-row {
     background: rgb(23, 162, 184);
     background: rgba(23, 162, 184, .50);
     border-radius: 5px 5px 0px 0px;
@@ -85,12 +86,14 @@ nav {
 }
 
 .exercise-name,
-.routine-name {
+.routine-name,
+.workout-name {
     font-weight: 500;
 }
 
 .exercise-detail-row,
-.routine-detail-row {
+.routine-detail-row,
+.workout-detail-row {
     background: rgba(23, 162, 184, .70);
     border-radius: 0px 0px 5px 5px;
     padding: 10px 0px;
@@ -98,7 +101,8 @@ nav {
 }
 
 .exercise-detail-row p,
-.routine-detail-row p {
+.routine-detail-row p,
+.workout-detail-row p {
     margin: 0;
 }
 
@@ -116,7 +120,8 @@ nav {
 }
 
 .exercise-reps-sets,
-.routine-length {
+.routine-length,
+.workout-exercise-list {
     color: cyan;
     font-style: italic;
 }

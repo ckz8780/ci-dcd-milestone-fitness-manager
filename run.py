@@ -65,8 +65,15 @@ def add_exercise():
 def insert_routine():
     return redirect(url_for('get_routines'))
     
-@app.route('/workouts/insert')
+@app.route('/workouts/insert', methods=['POST'])
 def insert_workout():
+    
+    new_workout = {
+        "workout_name": request.form.get('workout_name'),
+        "exercise_list": request.form.getlist('exercise_list')
+    }
+    
+    inserted = mongo.db.workouts.insert_one(new_workout)
     return redirect(url_for('get_workouts'))
     
 @app.route('/exercises/insert', methods=['POST'])
@@ -106,16 +113,19 @@ def edit_exercise(exercise_id):
     
 # UPDATE ROUTINES/WORKOUTS/EXERCISES  
 
-@app.route('/routines/update')
-def update_routine():
+@app.route('/routines/update/<routine_id>')
+def update_routine(routine_id):
+    print(routine_id)
     return redirect(url_for('get_routines'))
 
-@app.route('/workouts/update')
-def update_workout():
+@app.route('/workouts/update/<workout_id>')
+def update_workout(workout_id):
+    print(workout_id)
     return redirect(url_for('get_workouts'))
     
-@app.route('/exercises/update')
-def update_exercise():
+@app.route('/exercises/update/<exercise_id>')
+def update_exercise(exercise_id):
+    print(exercise_id)
     return redirect(url_for('get_exercises'))
     
     
