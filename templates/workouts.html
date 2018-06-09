@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>WORKOUTS</h1>
-{% for workout in workouts %}
-<p>{{ workout.workout_type_name }}</p>
-{% endfor%}
+<div class="row page-header-row text-center">
+    <div class="col-12">
+        <h1 class="display-3">Workouts</h1>        
+    </div>
+</div>
 {% endblock %}

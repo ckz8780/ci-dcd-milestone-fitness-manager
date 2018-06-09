@@ -1,8 +1,29 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>Routines:</h1>
-    {% for routine in routines %}
-        <p>{{ routine.routine_name }}: {{ routine.length }} Minutes, Level {{ routine.difficulty }} Difficulty</p>
-    {% endfor %}
+<div class="row page-header-row text-center">
+    <div class="col-12">
+        <h1 class="display-3">Routines</h1>        
+    </div>
+</div>
+
+{% for routine in routines %}
+<div class="row text-center text-md-left routine-name-row">
+    <div class="col-12">
+        <h3 class="routine-name">{{ routine.routine_name }}</h3>
+    </div>
+</div>
+<div class="row text-center text-md-left routine-detail-row">
+    <div class="col-12 col-md-3 my-auto routine-length">
+        <p>{{ routine.length }} Minutes</p>
+    </div>
+    <div class="col-12 col-md-6 my-auto routine-difficulty">
+        <p>Level <span class="routine-difficulty-level">{{ routine.difficulty }}</span></p>
+    </div>
+    <div class="col-12 col-md-3 my-auto dbitem-buttons">
+        <a href="{{ url_for('edit_routine', routine_id=routine._id) }}" class="btn btn-sm btn-info">Modify</a>
+        <a href="{{ url_for('delete_routine', routine_id=routine._id) }}" class="btn btn-sm btn-danger">Delete</a>
+    </div>
+</div>
+{% endfor %}
 {% endblock %}

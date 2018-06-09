@@ -55,18 +55,13 @@ def edit_exercise(exercise_id):
 def edit_workout():
     return render_template("edit_workout.html")
     
-@app.route('/routines/edit')
-def edit_routine():
+@app.route('/routines/edit/<routine_id>')
+def edit_routine(routine_id):
+    print(routine_id)
     return render_template("edit_routine.html")
 
 @app.route('/exercises/insert', methods=['POST'])
 def insert_exercise():
-    
-    # workout_ids = []
-    # workout_id = ObjectId(mongo.db.workouts.find_one({"workout_type_name": request.form.get('exercise_workout_type')})['_id'])
-    # workout_ids.append(workout_id)
-    
-    # print(request.form.getlist('exercise_categories'))
     
     new_exercise = {
         "exercise_name": request.form.get('exercise_name'),
@@ -103,6 +98,11 @@ def update_routine():
 def delete_exercise(exercise_id):
     print(exercise_id)
     return redirect(url_for('get_exercises'))
+    
+@app.route('/routines/delete/<routine_id>')
+def delete_routine(routine_id):
+    print(routine_id)
+    return redirect(url_for('get_routines'))
     
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),

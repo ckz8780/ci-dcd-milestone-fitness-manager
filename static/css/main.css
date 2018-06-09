@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700|Roboto:300,400,700');
+@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,500,600,700|Roboto:300,400,500,600,700');
 
 html {
   position: relative;
@@ -33,6 +33,10 @@ body {
     top: 0;
     left: 0;
     z-index: -1;
+}
+
+.page-header-row {
+    margin: 20px 0px;
 }
 
 /* -------------------------------------------------- Navbar */
@@ -70,29 +74,51 @@ nav {
     transition: all 0.15s ease-in-out;
 }
 
-/* -------------------------------------------------- Exercises List */
+/* -------------------------------------------------- DB-item Lists */
 
-.exercise-name-row {
+.exercise-name-row,
+.routine-name-row {
     background: rgb(23, 162, 184);
     background: rgba(23, 162, 184, .50);
-    margin-top: 20px;
     border-radius: 5px 5px 0px 0px;
     padding-top: 10px;
 }
 
-.exercise-name {
-
+.exercise-name,
+.routine-name {
+    font-weight: 500;
 }
 
-.exercise-detail-row {
+.exercise-detail-row,
+.routine-detail-row {
     background: rgba(23, 162, 184, .70);
     border-radius: 0px 0px 5px 5px;
-    padding-top: 10px;
+    padding: 10px 0px;
+    margin-bottom: 20px;
 }
 
-.exercise-detail-row a {
+.exercise-detail-row p,
+.routine-detail-row p {
+    margin: 0;
+}
+
+.exercise-url a {
     text-decoration: none;
-    color: #fafafa;
+    color: rgb(128, 128, 128);
+    color: rgba(255, 255, 255, 0.5);
+    transition: all 0.25s ease-in-out;
+}
+
+.exercise-url a:hover {
+    text-decoration: none;
+    color: #fff;
+    transition: all 0.25s ease-in-out;
+}
+
+.exercise-reps-sets,
+.routine-length {
+    color: cyan;
+    font-style: italic;
 }
 
 
