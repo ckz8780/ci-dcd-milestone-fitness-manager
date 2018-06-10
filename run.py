@@ -170,17 +170,17 @@ def update_exercise(exercise_id):
 
 @app.route('/routines/delete/<routine_id>')
 def delete_routine(routine_id):
-    print(routine_id)
+    mongo.db.routines.remove({'_id': ObjectId(routine_id)})
     return redirect(url_for('get_routines'))
     
 @app.route('/workouts/delete/<workout_id>')
 def delete_workout(workout_id):
-    print(workout_id)
+    mongo.db.workouts.remove({'_id': ObjectId(workout_id)})
     return redirect(url_for('get_workouts'))
     
 @app.route('/exercises/delete/<exercise_id>')
 def delete_exercise(exercise_id):
-    print(exercise_id)
+    mongo.db.exercises.remove({'_id': ObjectId(exercise_id)})
     return redirect(url_for('get_exercises'))
 
 
