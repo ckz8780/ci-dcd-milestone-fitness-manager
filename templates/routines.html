@@ -22,7 +22,7 @@
     </div>
     <div class="col-12 col-md-3 my-auto dbitem-buttons">
         <a href="{{ url_for('edit_routine', routine_id=routine._id) }}" class="btn btn-sm btn-info">Modify</a>
-        <a href="{{ url_for('delete_routine', routine_id=routine._id) }}" class="btn btn-sm btn-danger">Delete</a>
+        <a data-href="{{ url_for('delete_routine', routine_id=routine._id) }}" data-toggle="modal" data-target="#confirm-delete" class="btn btn-sm btn-danger">Delete</a>
     </div>
 </div>
 {% endfor %}

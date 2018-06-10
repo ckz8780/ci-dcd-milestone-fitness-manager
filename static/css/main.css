@@ -57,7 +57,7 @@ nav {
     transition: all 0.25s ease-in-out;
 }
 
-.show, .dropdown-menu {
+.dropdown-menu.show, .dropdown-menu {
     background-color: #17a2b8;
     border: none;
 }
@@ -235,6 +235,41 @@ footer .lead a:hover {
     color: #fff;
     transition: all 0.25s ease-in-out;
 }
+
+/* -------------------------------------------------- Modals */
+.modal-content {
+    background: #000;
+    border: none;
+    box-shadow: 0px 0px 10px #111;
+}
+
+.modal-header {
+    color: #fff;
+    background: rgb(23, 162, 184);
+    background: rgba(23, 162, 184, .50);
+    border-bottom: none;
+}
+
+.modal-body {
+    color: #fff;
+    background: rgb(23, 162, 184);
+    background: rgba(23, 162, 184, .70);
+}
+
+.modal-footer {
+    background: rgb(23, 162, 184);
+    background: rgba(23, 162, 184, .70);
+    border-top: none;
+    border-bottom-left-radius: .3rem;
+    border-bottom-right-radius: .3rem;
+}
+
+.modal-header .close {
+    text-shadow: none;
+    color: #fff;
+    transition: all 0.25s ease-in-out;
+}
+
 
 /* -------------------------------------------------- Media Queries */
 
