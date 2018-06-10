@@ -119,6 +119,19 @@ nav {
     transition: all 0.25s ease-in-out;
 }
 
+.workout-details-video-link {
+    text-decoration: none;
+    color: rgb(128, 128, 128);
+    color: rgba(255, 255, 255, 0.5);
+    transition: all 0.25s ease-in-out;
+}
+
+.workout-details-video-link:hover {
+    text-decoration: none;
+    color: #fff;
+    transition: all 0.25s ease-in-out;
+}
+
 .exercise-reps-sets,
 .routine-length,
 .workout-exercise-list {
@@ -152,8 +165,52 @@ nav {
     padding: 5px 0px;
 }
 
+.workout-detail-button {
+    min-width: 75px;
+}
+
+.workout-detail-col-wrapper {
+    padding: 0;
+}
+
+.workout-detail-ecat {
+    display: inline-block;
+    background: #0e535e;
+    padding: 2px 4px;
+    margin: 2px 1px;
+    border-radius: 5px;
+}
+
 .workout-form-details {
     display: none;
+    background: rgba(23, 162, 184, 0.50);
+    border-radius: 5px;
+    margin: 10px 0px;
+}
+
+.form-workout-name-row {
+    padding: 10px 10px 0px 10px;
+}
+
+.form-workout-detail-row {
+    margin: 10px 0px;
+}
+
+.form-workout-header-row {
+    color: cyan;
+    padding: 0px 5px;
+    font-weight: 500;
+}
+
+.form-workout-exercise-list-wrapper {
+    padding: 10px 10px 10px 10px;
+    background: rgb(23, 162, 184);
+    background: rgba(23, 162, 184, 0.50);
+    border-radius: 0px 0px 5px 5px;
+}
+
+.form-add-row {
+    min-width: 420px;
 }
 
 /* -------------------------------------------------- Footer */

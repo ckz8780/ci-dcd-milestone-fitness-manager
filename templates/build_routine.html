@@ -12,20 +12,55 @@
             <div class="form-group">
                 <input class="form-control form-control-lg" type="text" name="routine_name" placeholder="Routine Name" required />
             </div>
-            <div class="form-group text-center text-md-left">
+            <div class="form-group">
                 <p class="h5">Choose Workouts:</p>
                 {% for workout in workouts %}
                     <div class="form-row workout-form-row">
-                        <div class="form-group col-md-3 my-auto">
+                        <div class="form-group col-9 col-md-3 my-auto">
                             <div class="custom-control custom-checkbox">
                                 <input type="checkbox" class="custom-control-input" id="{{ workout.workout_name }}" value="{{ workout.workout_name }}" name="workout_list">
                                 <label class="custom-control-label" for="{{ workout.workout_name }}">{{ workout.workout_name }}</label>
                             </div>
                         </div>
-                        <div class="col-12 col-md-9 my-auto">
+                        <div class="col-3 col-md-9 my-auto">
                             <a class="btn btn-sm btn-info workout-detail-button">Details</a>
                         </div>
-                        <div class="col-12 col-md-9 offset-md-3 workout-form-details"></div>
+                    </div>
+                    <div class="workout-form-details">
+                        <div class="workout-detail-col-wrapper">
+                            <div class="form-row text-center text-md-left form-workout-name-row">
+                                <div class="col-12">
+                                    <h4 class="workout-name">{{ workout.workout_name }} <small class="text-muted">Details</small></h4>
+                                </div>
+                            </div>
+                            <div class="form-workout-exercise-list-wrapper">
+                                <div class="form-row text-center text-md-left form-workout-header-row">
+                                    <div class="col-3 col-md-5">Name</div>
+                                    <div class="col-3 col-md-1">Sets</div>
+                                    <div class="col-3 col-md-1">Reps</div>
+                                    <div class="col-3 col-md-3">Categories</div>
+                                    <div class="col-12 col-md-2 d-none d-md-block">Video</div>
+                                </div>
+                                {% for workout_exercise_name in workout.exercise_list %}
+                                    {% for exercise in exercises %}
+                                        {% if workout_exercise_name == exercise.exercise_name %}
+                                        <div class="form-row text-center text-md-left form-workout-detail-row">
+                                            <div class="col-3 col-md-5 my-auto">{{ workout_exercise_name }}</div>
+                                            <div class="col-3 col-md-1 my-auto">{{ exercise.sets }}</div>
+                                            <div class="col-3 col-md-1 my-auto">{{ exercise.reps }}</div>
+                                            <div class="col-3 col-md-3 my-auto">
+                                                {% for ecat in exercise.categories %}
+                                                    <p class="workout-detail-ecat">{{ ecat | title }}</p>
+                                                {% endfor %}
+                                            </div>
+                                            <div class="col-12 col-md-2 my-auto"><a href="{{ exercise.exercise_url }}" class="btn btn-block btn-sm btn-info">Video</a></div>
+                                        </div>
+                                        <hr>
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endfor %}
+                            </div>
+                        </div>
                     </div>
                 {% endfor %}
             </div>
@@ -45,10 +80,18 @@
 {% block postloadjs %}
 <script type="text/javascript">
     $('.workout-detail-button').click(function() {
-        var detailsDiv = $(this).parent().siblings('.workout-form-details');
-        console.log('hi!!!', detailsDiv);
-        detailsDiv.html('hello!!!!');
+        var detailsDiv = $(this).closest('.workout-form-row').next('.workout-form-details');
         detailsDiv.slideToggle(250);
+        
+        if($(this).text() == 'Details') {
+            $(this).text('Close');
+            $(this).toggleClass('btn-info');
+            $(this).toggleClass('btn-danger');
+        } else {
+            $(this).text('Details');
+            $(this).toggleClass('btn-info');
+            $(this).toggleClass('btn-danger');
+        };
     });
 </script>
 {% endblock %}
