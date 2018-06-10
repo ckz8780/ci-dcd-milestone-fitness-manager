@@ -47,7 +47,10 @@ def get_exercises():
     
 @app.route('/routines/build')
 def build_routine():
-    return render_template("build_routine.html")
+    return render_template("build_routine.html",
+    workouts=[workout for workout in mongo.db.workouts.find()],
+    exercise_categories=[category for category in mongo.db.exercise_categories.find()],
+    exercises=[exercise for exercise in mongo.db.exercises.find()])
 
 @app.route('/workouts/build')
 def build_workout():
@@ -61,8 +64,10 @@ def add_exercise():
     
 # INSERT ROUTINES/WORKOUTS/EXERCISES
 
-@app.route('/routines/insert')
+@app.route('/routines/insert', methods=["POST"])
 def insert_routine():
+    workouts = request.form.getlist('workout_list')
+    print(workouts)
     return redirect(url_for('get_routines'))
     
 @app.route('/workouts/insert', methods=['POST'])

@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row page-header-row text-center">
+    <div class="col-12">
+        <h1 class="display-3">Build a Routine</h1>
+    </div>
+</div>
+<div class="row form-add-row">
+    <div class="col">
+        <form method="post" action="{{ url_for('insert_routine') }}">
+            <div class="form-group">
+                <input class="form-control form-control-lg" type="text" name="routine_name" placeholder="Routine Name" required />
+            </div>
+            <div class="form-group text-center text-md-left">
+                <p class="h5">Choose Workouts:</p>
+                {% for workout in workouts %}
+                    <div class="form-row workout-form-row">
+                        <div class="form-group col-md-3 my-auto">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="{{ workout.workout_name }}" value="{{ workout.workout_name }}" name="workout_list">
+                                <label class="custom-control-label" for="{{ workout.workout_name }}">{{ workout.workout_name }}</label>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-9 my-auto">
+                            <a class="btn btn-sm btn-info workout-detail-button">Details</a>
+                        </div>
+                        <div class="col-12 col-md-9 offset-md-3 workout-form-details"></div>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="form-group">
+                <p class="h5">Total Routine Length:<br><small class="text-muted">(Minutes, 5-180)</small></p>
+                <input class="form-control form-control-lg" type="number" name="routine_length" min="5" max="180" placeholder="Routine Length" required>
+            </div>
+            <div class="form-group">
+                <input class="form-control form-control-lg" type="number" name="routine_length" min="1" max="10" placeholder="Routine Intensity (1-10)" required>
+            </div>
+            <button class="btn btn-info btn-lg form-control form-control-lg">Build It!</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block postloadjs %}
+<script type="text/javascript">
+    $('.workout-detail-button').click(function() {
+        var detailsDiv = $(this).parent().siblings('.workout-form-details');
+        console.log('hi!!!', detailsDiv);
+        detailsDiv.html('hello!!!!');
+        detailsDiv.slideToggle(250);
+    });
+</script>
+{% endblock %}

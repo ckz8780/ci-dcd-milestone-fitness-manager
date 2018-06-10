@@ -148,6 +148,14 @@ nav {
     margin: 0px 5px;
 }
 
+.workout-form-row {
+    padding: 5px 0px;
+}
+
+.workout-form-details {
+    display: none;
+}
+
 /* -------------------------------------------------- Footer */
 
 .footer {
