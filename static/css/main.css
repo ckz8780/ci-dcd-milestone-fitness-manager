@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,500,600,700|Roboto:300,400,500,600,700');
 
+/* -------------------------------------------------- Core/Sitewide CSS */
+
 html {
   position: relative;
   min-height: 100%;
@@ -119,19 +121,6 @@ nav {
     transition: all 0.25s ease-in-out;
 }
 
-.workout-details-video-link {
-    text-decoration: none;
-    color: rgb(128, 128, 128);
-    color: rgba(255, 255, 255, 0.5);
-    transition: all 0.25s ease-in-out;
-}
-
-.workout-details-video-link:hover {
-    text-decoration: none;
-    color: #fff;
-    transition: all 0.25s ease-in-out;
-}
-
 .exercise-reps-sets,
 .routine-length,
 .workout-exercise-list {
@@ -159,6 +148,12 @@ nav {
 
 .dbitem-buttons a {
     margin: 0px 5px;
+}
+
+/* -------------------------------------------------- Routine Builder Form */
+
+.form-add-row {
+    min-width: 420px;
 }
 
 .workout-form-row {
@@ -207,10 +202,6 @@ nav {
     background: rgb(23, 162, 184);
     background: rgba(23, 162, 184, 0.50);
     border-radius: 0px 0px 5px 5px;
-}
-
-.form-add-row {
-    min-width: 420px;
 }
 
 /* -------------------------------------------------- Footer */

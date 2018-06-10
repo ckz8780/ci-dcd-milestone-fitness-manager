@@ -66,24 +66,26 @@ def add_exercise():
 
 @app.route('/routines/insert', methods=["POST"])
 def insert_routine():
-    workouts = request.form.getlist('workout_list')
-    print(workouts)
+    new_routine = {
+        "routine_name": request.form.get('routine_name'),
+        "workout_list": request.form.getlist('workout_list'),
+        "routine_length": request.form.get('routine_length'),
+        "routine_intensity": request.form.get('routine_intensity')
+    }
+    inserted = mongo.db.routines.insert_one(new_routine)
     return redirect(url_for('get_routines'))
     
 @app.route('/workouts/insert', methods=['POST'])
 def insert_workout():
-    
     new_workout = {
         "workout_name": request.form.get('workout_name'),
         "exercise_list": request.form.getlist('exercise_list')
     }
-    
     inserted = mongo.db.workouts.insert_one(new_workout)
     return redirect(url_for('get_workouts'))
     
 @app.route('/exercises/insert', methods=['POST'])
 def insert_exercise():
-    
     new_exercise = {
         "exercise_name": request.form.get('exercise_name'),
         "sets": request.form.get('exercise_sets'),
@@ -91,7 +93,6 @@ def insert_exercise():
         "categories": request.form.getlist('exercise_categories'),
         "exercise_url": request.form.get('exercise_url')
     }
-    
     inserted = mongo.db.exercises.insert_one(new_exercise)
     return redirect(url_for('get_exercises'))
 
@@ -103,8 +104,11 @@ def insert_exercise():
 
 @app.route('/routines/edit/<routine_id>')
 def edit_routine(routine_id):
-    print(routine_id)
-    return render_template("edit_routine.html")
+    return render_template("edit_routine.html",
+    workouts=[workout for workout in mongo.db.workouts.find()],
+    exercise_categories=[category for category in mongo.db.exercise_categories.find()],
+    exercises=[exercise for exercise in mongo.db.exercises.find()],
+    routine=mongo.db.routines.find_one({'_id': ObjectId(routine_id)}))
     
 @app.route('/workouts/edit/<workout_id>')
 def edit_workout(workout_id):
@@ -122,19 +126,40 @@ def edit_exercise(exercise_id):
     
 # UPDATE ROUTINES/WORKOUTS/EXERCISES  
 
-@app.route('/routines/update/<routine_id>')
+@app.route('/routines/update/<routine_id>', methods=['POST'])
 def update_routine(routine_id):
-    print(routine_id)
+    updated = mongo.db.routines.update(
+        {'_id': ObjectId(routine_id)},
+        {
+            "routine_name": request.form.get('routine_name'),
+            "workout_list": request.form.getlist('workout_list'),
+            "routine_length": request.form.get('routine_length'),
+            "routine_intensity": request.form.get('routine_intensity')
+        })
+    print(updated)
     return redirect(url_for('get_routines'))
 
-@app.route('/workouts/update/<workout_id>')
+@app.route('/workouts/update/<workout_id>', methods=['POST'])
 def update_workout(workout_id):
-    print(workout_id)
+    updated = mongo.db.workouts.update(
+        {'_id': ObjectId(workout_id)},
+        {
+            "workout_name": request.form.get('workout_name'),
+            "exercise_list": request.form.getlist('exercise_list')
+        })
     return redirect(url_for('get_workouts'))
     
-@app.route('/exercises/update/<exercise_id>')
+@app.route('/exercises/update/<exercise_id>', methods=['POST'])
 def update_exercise(exercise_id):
-    print(exercise_id)
+    mongo.db.exercises.update(
+        {'_id': ObjectId(exercise_id)},
+        {
+            "exercise_name": request.form.get('exercise_name'),
+            "sets": request.form.get('exercise_sets'),
+            "reps": request.form.get('exercise_reps'),
+            "categories": request.form.getlist('exercise_categories'),
+            "exercise_url": request.form.get('exercise_url')
+        })
     return redirect(url_for('get_exercises'))
     
     

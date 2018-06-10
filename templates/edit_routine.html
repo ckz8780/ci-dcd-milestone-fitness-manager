@@ -3,22 +3,26 @@
 {% block content %}
 <div class="row page-header-row text-center">
     <div class="col-12">
-        <h1 class="display-3">Build a Routine</h1>
+        <h1 class="display-3">Modify Routine</h1>
     </div>
 </div>
 <div class="row form-add-row">
     <div class="col">
-        <form method="post" action="{{ url_for('insert_routine') }}">
+        <form method="post" action="{{ url_for('update_routine', routine_id=routine._id) }}">
             <div class="form-group">
-                <input class="form-control form-control-lg" type="text" name="routine_name" placeholder="Routine Name" required />
+                <input class="form-control form-control-lg" type="text" name="routine_name" placeholder="Routine Name" value="{{ routine.routine_name }}" required />
             </div>
             <div class="form-group">
-                <p class="h5">Choose Workouts:</p>
+                <p class="h5">Choose Workouts:<br><small class="text-muted">(Current Workouts are Checked)</small></p>
                 {% for workout in workouts %}
                     <div class="form-row workout-form-row">
                         <div class="form-group col-9 col-md-3 my-auto">
                             <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="{{ workout.workout_name }}" value="{{ workout.workout_name }}" name="workout_list">
+                                {% if workout.workout_name in routine.workout_list %}
+                                    <input type="checkbox" class="custom-control-input" id="{{ workout.workout_name }}" value="{{ workout.workout_name }}" name="workout_list" checked>
+                                {% else %}
+                                    <input type="checkbox" class="custom-control-input" id="{{ workout.workout_name }}" value="{{ workout.workout_name }}" name="workout_list">
+                                {% endif  %}
                                 <label class="custom-control-label" for="{{ workout.workout_name }}">{{ workout.workout_name }}</label>
                             </div>
                         </div>
@@ -65,13 +69,13 @@
                 {% endfor %}
             </div>
             <div class="form-group">
-                <p class="h5">Total Routine Length:<br><small class="text-muted">(Minutes, 5-180)</small></p>
-                <input class="form-control form-control-lg" type="number" name="routine_length" min="5" max="180" placeholder="Routine Length" required>
+                <p class="h5">Total Routine Length:<br><small class="text-muted">(5-180 Minutes)</small></p>
+                <input class="form-control form-control-lg" type="number" name="routine_length" min="5" max="180" placeholder="Routine Length" value="{{ routine.routine_length }}" required>
             </div>
             <div class="form-group">
-                <input class="form-control form-control-lg" type="number" name="routine_intensity" min="1" max="10" placeholder="Routine Intensity (1-10)" required>
+                <input class="form-control form-control-lg" type="number" name="routine_intensity" min="1" max="10" placeholder="Routine Intensity (1-10)" value="{{ routine.routine_intensity }}" required>
             </div>
-            <button class="btn btn-info btn-lg form-control form-control-lg">Build It!</button>
+            <button class="btn btn-info btn-lg form-control form-control-lg">Update!</button>
         </form>
     </div>
 </div>
