@@ -9,4 +9,6 @@ Optionally, you can provide a URL for a video of the exercise. Exercises are bes
 
 You can combine and save infinite combinations of routines, workouts and exercises to keep your exercise habits interesting!
 
+Note: For now, data has been input as mock exercises just to demonstrate the functionality.
+
 A live version is at https://ci-dcd-fitness-manager.herokuapp.com/

@@ -48,15 +48,15 @@ def get_exercises():
 @app.route('/routines/build')
 def build_routine():
     return render_template("build_routine.html",
-    workouts=[workout for workout in mongo.db.workouts.find()],
-    exercise_categories=[category for category in mongo.db.exercise_categories.find()],
-    exercises=[exercise for exercise in mongo.db.exercises.find()])
+    workouts=list(mongo.db.workouts.find()),
+    exercise_categories=list(mongo.db.exercise_categories.find()),
+    exercises=list(mongo.db.exercises.find()))
 
 @app.route('/workouts/build')
 def build_workout():
     return render_template("build_workout.html",
-    exercise_categories=[category for category in mongo.db.exercise_categories.find()],
-    exercises=[exercise for exercise in mongo.db.exercises.find()])
+    exercise_categories=list(mongo.db.exercise_categories.find()),
+    exercises=list(mongo.db.exercises.find()))
 
 @app.route('/exercises/add')
 def add_exercise():
@@ -105,23 +105,23 @@ def insert_exercise():
 @app.route('/routines/edit/<routine_id>')
 def edit_routine(routine_id):
     return render_template("edit_routine.html",
-    workouts=[workout for workout in mongo.db.workouts.find()],
-    exercise_categories=[category for category in mongo.db.exercise_categories.find()],
-    exercises=[exercise for exercise in mongo.db.exercises.find()],
+    workouts=list(mongo.db.workouts.find()),
+    exercise_categories=list(mongo.db.exercise_categories.find()),
+    exercises=list(mongo.db.exercises.find()),
     routine=mongo.db.routines.find_one({'_id': ObjectId(routine_id)}))
     
 @app.route('/workouts/edit/<workout_id>')
 def edit_workout(workout_id):
     print(workout_id)
     return render_template("edit_workout.html",
-    exercise_categories=[category for category in mongo.db.exercise_categories.find()],
-    exercises=[exercise for exercise in mongo.db.exercises.find()],
+    exercise_categories=list(mongo.db.exercise_categories.find()),
+    exercises=list(mongo.db.exercises.find()),
     workout=mongo.db.workouts.find_one({'_id': ObjectId(workout_id)}))
     
 @app.route('/exercises/edit/<exercise_id>')
 def edit_exercise(exercise_id):
     return render_template("edit_exercise.html",
-    categories=[category for category in mongo.db.exercise_categories.find()],
+    categories=list(mongo.db.exercise_categories.find()),
     exercise=mongo.db.exercises.find_one({'_id': ObjectId(exercise_id)}))
     
 # UPDATE ROUTINES/WORKOUTS/EXERCISES  
@@ -193,7 +193,7 @@ def delete_exercise(exercise_id):
 def get_exercises_by_cat(cat):
     """Returns a list of exercises in JSON format, given a category from an AJAX request"""
     if request.is_xhr:
-        exercise_list = [exercise for exercise in mongo.db.exercises.find({"categories": cat}, {"_id": 0})]
+        exercise_list = list(mongo.db.exercises.find({"categories": cat}, {"_id": 0}))
         return jsonify(exercises=exercise_list)
     return redirect(url_for('get_exercises'))
     
